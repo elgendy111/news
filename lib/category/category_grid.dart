@@ -4,37 +4,44 @@ import 'package:news/category/category_item.dart';
 import 'package:news/category/category_model.dart';
 
 class CategoryGrid extends StatelessWidget {
-  CategoryGrid({super.key});
+  CategoryGrid({super.key, required this.selectedCategory});
+  final void Function(CategoryModel) selectedCategory;
 
   @override
   Widget build(BuildContext context) {
     List<CategoryModel> categories = [
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
       ),
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
       ),
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
       ),
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
       ),
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
       ),
       CategoryModel(
+        id: 'ss',
         name: 'Sports',
         image: 'ball',
         color: Color(0xffC91C22),
@@ -55,19 +62,25 @@ class CategoryGrid extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
-              ),
-              itemBuilder: (_, index) => CategoryItem(
-                category: categories[index],
-                index: index,
-              ),
-              itemCount: categories.length,
+              child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 24,
+              mainAxisSpacing: 24,
             ),
-          )
+            itemBuilder: (_, index) {
+              final category = categories[index];
+              return GestureDetector(
+                  onTap: () {
+                    selectedCategory(category);
+                  },
+                  child: CategoryItem(
+                    category: category,
+                    index: index,
+                  ));
+            },
+            itemCount: categories.length,
+          ))
         ],
       ),
     );
