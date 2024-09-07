@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news/app_theme.dart';
+import 'package:news/models/news_responce/news.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({super.key});
-
+  const NewsItem(this.news, {super.key});
+  final News news;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,15 +17,16 @@ class NewsItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Image.asset(
-              'assets/images/NewsTest.png',
+            child: Image.network(
+              news.urlToImage ??
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNNLEL-qmmLeFR1nxJuepFOgPYfnwHR56vcw&s',
               height: MediaQuery.of(context).size.height * 0.25,
               width: double.infinity,
               fit: BoxFit.fill,
             ),
           ),
           Text(
-            'BBC news',
+            news.source?.name ?? '',
             style: Theme.of(context)
                 .textTheme
                 .titleSmall
@@ -34,7 +36,7 @@ class NewsItem extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Why are football's biggest clubs starting a new tournament?",
+            news.title ?? '',
             style: Theme.of(context)
                 .textTheme
                 .titleSmall
@@ -43,7 +45,7 @@ class NewsItem extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.topEnd,
             child: Text(
-              timeago.format(DateTime.now()),
+              timeago.format(news.publishedAt ?? DateTime.now()),
               style: Theme.of(context)
                   .textTheme
                   .titleSmall
