@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/app_theme.dart';
 import 'package:news/home_screen.dart';
+import 'package:news/tabs/search.dart';
 
 void main() {
   runApp(const News_App());
@@ -15,6 +16,7 @@ class News_App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
+        SearchTab.routeName: (_) => const SearchTab()
       },
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,

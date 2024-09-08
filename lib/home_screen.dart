@@ -5,6 +5,7 @@ import 'package:news/category/category_grid.dart';
 import 'package:news/category/category_model.dart';
 import 'package:news/drawer/home_drawer.dart';
 import 'package:news/settings/settings_tab.dart';
+import 'package:news/tabs/search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: AppTheme.white,
           image: DecorationImage(
             image: AssetImage(
@@ -29,6 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('News App'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    SearchTab.routeName,
+                    arguments: '',
+                  );
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: AppTheme.white,
+                  size: 28,
+                ))
+          ],
         ),
         drawer: HomeDrawer(
           onItemSelected: onDrawerItemSelected,
